@@ -16,7 +16,7 @@
 		"TCGplayerBearerToken": ""
 	},
 	"Hooks": {
-		"BeforePageDisplay": "TCGplayerHooks::createScript"
+		"MakeGlobalVariablesScript": "TCGplayerHooks::createScript"
 	},
 	"MessagesDirs": {
 		"TCGplayer": [

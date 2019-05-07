@@ -109,7 +109,7 @@ class TCGplayerHooks {
 		);
 	}
 
-	public static function createScript( OutputPage &$out, Skin &$skin ) {
+	public static function createScript( array &$vars ) {
 
 		global
 			$wgOut,
@@ -198,15 +198,10 @@ class TCGplayerHooks {
 			}
 		}
 
-		$pricesStr = json_encode( $outPrices );
-
-		$script = <<<SCRIPT
-window.TCGplayer = {$pricesStr};
-window.TCGplayer.url = 'https://shop.tcgplayer.com/yugioh/product/show?newSearch=false&IsProductNameExact=false&ProductName=$cardName&Type=Cards&condition=Near_Mint&orientation=list&partner=yugipedia';
-SCRIPT;
-
-		// TODO: this is deprecated:
-		$out->addInlineScript( $script );
+		$vars['wgTCGplayer'] = [
+			'url' => 'https://shop.tcgplayer.com/yugioh/product/show?newSearch=false&IsProductNameExact=false&ProductName=$cardName&Type=Cards&condition=Near_Mint&orientation=list&partner=yugipedia',
+			'prices' => $outPrices
+		];
 
 	}
 
